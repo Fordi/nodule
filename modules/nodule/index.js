@@ -1,8 +1,8 @@
 module.exports = (function () {
-	var conf = require(process.cwd()+'/config.js');
-	var ModelBase = require('nodule/model')(conf.datasource);
-	
-	var Url = require('url'),
+	var serverRoot = process.cwd(),
+		conf = require(serverRoot+'/config.js'),
+		ModelBase = require('nodule/model')(conf),
+		Url = require('url'),
 		FS = require('fs'),
 		StaticFile = require('./static'),
 		splitPath = function (str) {
