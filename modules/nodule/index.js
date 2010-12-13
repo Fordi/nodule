@@ -18,16 +18,17 @@ module.exports = (function () {
 				command = splitPath(url.pathname);
 			while (command.length<2) command.push('index');
 			try {
-				var ctl = require(process.cwd()+'/Controller/'+command[0]+'.js')(ModelBase);
-				if (ctl[command[1]]) {
-					if (ctl[command[1]].call(dispatcher, req, res, url.query)) return;
-				}
+				var ctl = require(process.cwd()+'/Controller/'+command.shift()+'.js')(ModelBase),
+					action = command.shift();
+				var args = command.unshift(req, res, url.query);
+				if (ctl[action] && ctl[action].apply(dispatcher, args)) return;
 			} catch (e) {};
 			StaticFile(req, res, function () {
 				res.writeHead(404, {'Content-Type': 'text/html'});
 				res.end(require('nodule/template')('Error/General', {
 					errorCode: '404',
-					errorMessage: 'File Not Found'
+					errorMessage: 'File Not Found',
+					url: req.url
 				}));
 			});
 		};

@@ -42,9 +42,6 @@ module.exports = (function () {
 		if (!(this instanceof Table)) return new Table(table);
 		this.tableName = table;
 	};
-	Table.prototype.buildClauses = function () {
-		return buildClauses(this);
-	};
 	
 	Table.prototype.tableName=null;
 	Table.prototype.filters = [];
