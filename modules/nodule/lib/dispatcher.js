@@ -1,7 +1,7 @@
 module.exports = (function () {
 	var serverRoot = process.cwd(),
 		conf = require(serverRoot+'/config.js'),
-		ModelBase = require('./model')(conf),
+		ModelBase = require('./model')(conf.datasource),
 		Url = require('url'),
 		FS = require('fs'),
 		StaticFile = require('./static'),

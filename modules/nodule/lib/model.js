@@ -122,6 +122,7 @@ module.exports = (function () {
 		return client.query.apply(client.query, arguments);
 	};
 	Model.connect = function Connect (descriptor) {
+		console.log(descriptor);
 		var url = require('url').parse(descriptor);
 		url.auth = url.auth.split(':');
 		while (url.auth.length<2) url.auth.push('');
