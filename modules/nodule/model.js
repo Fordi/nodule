@@ -67,6 +67,8 @@ module.exports = (function () {
 			order: this._order.pop()
 		};
 	};
+	
+	
 	Table.prototype.end = function () {
 		this.pop();
 		return this;
