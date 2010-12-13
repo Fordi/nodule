@@ -95,7 +95,6 @@ module.exports = (function () {
 	};
 	Table.prototype.get = function (dataCallback) {
 		var query = 'SELECT * FROM '+this.tableName+' '+buildClauses(this);
-		console.log(query);
 		var inst = this;
 		client.query(query, function (dum, data) {
 			dataCallback.apply(inst, data);
@@ -122,7 +121,6 @@ module.exports = (function () {
 		return client.query.apply(client.query, arguments);
 	};
 	Model.connect = function Connect (descriptor) {
-		console.log(descriptor);
 		var url = require('url').parse(descriptor);
 		url.auth = url.auth.split(':');
 		while (url.auth.length<2) url.auth.push('');
